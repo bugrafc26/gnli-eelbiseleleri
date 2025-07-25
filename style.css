@@ -1,0 +1,803 @@
+/* Genel Stil Sıfırlamaları ve Temel Ayarlar */
+:root {
+    --primary-color: #00bcd4; /* Aqua Mavisi - Modern ve Canlı */
+    --secondary-color: #ff5722; /* Koyu Turuncu/Kırmızı - Enerjik Vurgu */
+    --accent-color: #fdd835; /* Parlak Sarı - Dikkat Çekici Detaylar */
+    --dark-bg-main: #1e3a8a; /* Ana Arka Plan için Mavi-Yeşil Gradient Başlangıcı */
+    --dark-bg-end: #06b6d4; /* Ana Arka Plan için Mavi-Yeşil Gradient Sonu */
+    --light-text: #e0e0e0; /* Yumuşak Açık Gri Yazı */
+    --card-bg: #2b2b2b; /* Kartlar için hafif açık koyu */
+    --header-bg: rgba(26, 26, 26, 0.95); /* Şeffaf koyu başlık */
+    --footer-bg: #0a0a0a; /* Daha koyu alt bilgi */
+    --border-radius: 12px;
+    --transition-speed: 0.4s ease-in-out;
+    --hover-scale: 1.05;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif; /* Modern ve okunaklı font */
+    line-height: 1.7;
+    color: var(--light-text);
+    /* Hareketli gradyan ve hafif nokta animasyonu */
+    background: linear-gradient(45deg, var(--dark-bg-main), #155e75, #047857, var(--dark-bg-end));
+    background-size: 300% 300%;
+    background-attachment: fixed; /* <-- BU EKLENDİ: Arka plan sabit kalacak */
+    animation: animatedGradient 20s ease infinite alternate;
+    position: relative; /* Diğer öğelerin z-index için */
+    overflow-x: hidden;
+}
+
+body::before {
+    content: '';
+    position: fixed; /* <-- BU DEĞİŞTİ: Noktalar da sabit kalacak */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                      radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 30px 30px;
+    background-position: 0 0, 15px 15px;
+    opacity: 0.3;
+    animation: subtleMotion 60s linear infinite;
+    z-index: -1; /* İçeriğin arkasında kalması için */
+}
+
+@keyframes animatedGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes subtleMotion {
+    0% { background-position: 0 0, 15px 15px; }
+    100% { background-position: 100px 100px, 115px 115px; }
+}
+
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+    position: relative; /* Arka plan üzerine içerik gelmesi için */
+    z-index: 1; /* İçeriğin arka planın üstünde olması için */
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color var(--transition-speed), text-shadow var(--transition-speed);
+}
+
+a:hover {
+    color: var(--accent-color);
+    text-shadow: 0 0 8px rgba(253, 216, 53, 0.6); /* Hafif sarı parıltı */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif; /* Güçlü ve şık başlık fontu */
+    color: var(--light-text);
+    margin-bottom: 0.6em;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+p {
+    margin-bottom: 1.2em;
+    color: #c0c0c0;
+}
+
+/* Header Stil */
+.main-header {
+    background-color: var(--header-bg);
+    color: #fff;
+    padding: 20px 0; /* Yüksekliği artırdık */
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4); /* Daha belirgin ve yaygın gölge */
+    backdrop-filter: blur(10px); /* Güçlü bulanıklık efekti */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08); /* İnce alt çizgi */
+    transition: background-color var(--transition-speed), padding var(--transition-speed);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+.brand-logo {
+    display: flex;
+    align-items: center;
+    font-family: 'Electrolize', sans-serif; /* Daha fütüristik logo fontu */
+    font-size: 2.2em; /* Daha büyük logo yazısı */
+    color: var(--primary-color); /* Mavi logo */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 800;
+    text-shadow: 0 0 15px rgba(0, 188, 212, 0.7); /* Mavi parıltı */
+}
+
+.brand-logo img {
+    height: 50px; /* Logonun yüksekliği */
+    margin-right: 15px;
+    transition: transform var(--transition-speed) ease-out;
+    filter: drop-shadow(0 0 8px rgba(0, 188, 212, 0.5)); /* Logo görseline parıltı */
+}
+
+.brand-logo:hover img {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 40px; /* Boşlukları daha da artırdık */
+}
+
+.main-nav a {
+    color: var(--light-text);
+    font-weight: 600;
+    font-size: 1.15em;
+    position: relative;
+    padding: 10px 0;
+    transition: color var(--transition-speed);
+}
+
+.main-nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 4px; /* Daha kalın */
+    background-color: var(--accent-color); /* Sarı vurgu */
+    left: 0;
+    bottom: -5px; /* Daha aşağıda */
+    transition: width var(--transition-speed) cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Yumuşak bir yaylanma */
+}
+
+.main-nav a:hover::after,
+.main-nav a.active::after {
+    width: 100%;
+}
+
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--light-text);
+    font-size: 2.5em; /* Daha büyük ikon */
+    cursor: pointer;
+    transition: transform var(--transition-speed);
+}
+
+.nav-toggle:hover {
+    transform: rotate(90deg);
+}
+
+/* Hero Section Stil */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    overflow: hidden;
+    padding-top: 120px;
+    /* Daha soyut ve dinamik arka plan */
+    background: linear-gradient(135deg, var(--dark-bg-main) 0%, rgba(0, 188, 212, 0.1) 40%, #1e3a8a 100%);
+    background-size: 250% 250%; /* Daha geniş alana yayılma */
+    animation: gradientPulse 15s ease infinite alternate; /* Yavaş nabız etkisi */
+    /* Z-index 1'den az olmalı ki body::before altında kalsın */
+    z-index: 0; 
+}
+
+@keyframes gradientPulse {
+    0% { background-position: 0% 0%; }
+    50% { background-position: 100% 100%; }
+    100% { background-position: 0% 0%; }
+}
+
+.hero-content {
+    z-index: 2;
+    max-width: 1000px; /* Genişlettik */
+    padding: 40px;
+    background-color: rgba(0, 0, 0, 0.5); /* Daha koyu şeffaf kutu */
+    border-radius: var(--border-radius);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 188, 212, 0.3); /* Daha belirgin ve mavi parıltılı gölge */
+    backdrop-filter: blur(8px); /* Güçlü bulanıklık efekti */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* İnce çerçeve */
+}
+
+.hero-content h1 {
+    font-size: 5.5em; /* Daha büyük başlık */
+    margin-bottom: 30px;
+    font-weight: 900; /* Ekstra kalın */
+    line-height: 1.05;
+    color: #fff; /* Tamamen beyaz */
+    text-shadow: 0 0 30px rgba(0, 188, 212, 0.9), 0 0 15px rgba(255, 87, 34, 0.5); /* Mavi ve hafif turuncu parıltı */
+}
+
+.hero-content h2 {
+    font-size: 2.8em; /* Daha büyük alt başlık */
+    margin-bottom: 50px;
+    font-weight: 500;
+    color: #d0d0d0;
+    letter-spacing: 1px;
+}
+
+.hero-content .highlight-word {
+    color: var(--accent-color); /* Parlak Sarı vurgu */
+    font-family: 'Electrolize', sans-serif;
+    text-shadow: 0 0 15px rgba(253, 216, 53, 0.8);
+}
+
+.cta-button {
+    background-color: var(--secondary-color); /* Koyu Turuncu/Kırmızı */
+    color: #fff;
+    padding: 20px 45px; /* Daha büyük ve dolgun buton */
+    border: none;
+    border-radius: 50px;
+    font-size: 1.4em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color var(--transition-speed), transform var(--transition-speed), box-shadow var(--transition-speed);
+    box-shadow: 0 10px 30px rgba(255, 87, 34, 0.6); /* Turuncu/Kırmızı gölge */
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s ease-out, height 0.4s ease-out;
+}
+
+.cta-button:hover::before {
+    width: 200%;
+    height: 200%;
+}
+
+.cta-button:hover {
+    background-color: #e64a19; /* Koyu ton */
+    transform: translateY(-8px) scale(1.03); /* Daha belirgin hareket */
+    box-shadow: 0 15px 40px rgba(255, 87, 34, 0.8);
+}
+
+/* Animasyonlar */
+.fade-in-top {
+    opacity: 0;
+    transform: translateY(-40px);
+    animation: fadeInTop 1.5s forwards;
+    animation-delay: 0.8s;
+}
+
+.fade-in-bottom {
+    opacity: 0;
+    transform: translateY(40px);
+    animation: fadeInBottom 1.5s forwards;
+    animation-delay: 1.3s;
+}
+
+.scale-in {
+    opacity: 0;
+    transform: scale(0.6);
+    animation: scaleIn 1.5s forwards cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    animation-delay: 1.8s;
+}
+
+@keyframes fadeInTop {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInBottom {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+    to { opacity: 1; transform: scale(1); }
+}
+
+
+/* Product Listing Section */
+.product-listing-section {
+    padding: 120px 0; /* Boşluğu artırdık */
+    background: linear-gradient(180deg, #1f1f1f 0%, #0a0a0a 100%); /* Hafif geçişli koyu arka plan */
+    color: var(--light-text);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    z-index: 1; /* Diğer arka planların üstünde olması için */
+}
+
+.section-title {
+    text-align: center;
+    font-size: 3.8em; /* Daha büyük başlık */
+    margin-bottom: 80px;
+    color: var(--primary-color); /* Aqua Mavisi */
+    position: relative;
+    letter-spacing: 1.5px;
+    text-shadow: 0 0 15px rgba(0, 188, 212, 0.6);
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    width: 120px; /* Daha geniş */
+    height: 6px; /* Kalınlaştırdık */
+    background-color: var(--accent-color); /* Parlak Sarı çizgi */
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -25px;
+    border-radius: 4px;
+    box-shadow: 0 0 15px rgba(253, 216, 53, 0.7);
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Minimum boyutu ve dolayısıyla kartları büyüttük */
+    gap: 50px; /* Boşlukları daha da artırdık */
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.product-item {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 188, 212, 0.2); /* Daha belirgin ve parıltılı gölge */
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed), background-color var(--transition-speed);
+    position: relative;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.1); /* İnce şık kenarlık */
+}
+
+.product-item:hover {
+    transform: translateY(-12px) scale(1.02); /* Daha belirgin hareket */
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 188, 212, 0.6); /* Mavi tonunda güçlü parıltı */
+    background-color: #3a3a3a; /* Hafif koyulaşma */
+}
+
+.product-item img {
+    width: 100%;
+    height: 350px; /* Görsel yüksekliği daha da artırıldı */
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease-in-out;
+    filter: brightness(0.95); /* Hafif solukluk, hover'da canlanacak */
+}
+
+.product-item:hover img {
+    transform: scale(1.15); /* Daha güçlü zoom */
+    filter: brightness(1.1); /* Canlandırma */
+}
+
+.product-item h3 {
+    font-size: 1.8em;
+    color: var(--primary-color);
+    margin: 25px 25px 10px;
+    letter-spacing: 0.8px;
+    text-shadow: 0 0 10px rgba(0, 188, 212, 0.3);
+}
+
+.product-item p {
+    font-size: 1.1em;
+    color: #a0a0a0;
+    padding: 0 25px 25px;
+}
+
+/* Ürün üzerine gelince detay butonunun alttan gelmesi - GİTMESİN DÜZELTME */
+.product-overlay {
+    position: absolute;
+    left: 0;
+    bottom: 0; /* Alt kısma hizala */
+    width: 100%;
+    height: 90px; /* Butonun görüneceği sabit alan */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.4)); /* Saydamdan koyuya geçişli gradient */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(100%); /* Başlangıçta ekran dışında (aşağıda) */
+    transition: opacity var(--transition-speed), transform var(--transition-speed);
+    padding: 10px; /* İç boşluk */
+    /* Köşeleri uyumlu hale getirmek için alttan yuvarla */
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+}
+
+.product-item:hover .product-overlay {
+    opacity: 1;
+    transform: translateY(0); /* Üst kısma doğru kayarak görünür hale gel */
+}
+
+.product-overlay .view-details {
+    color: white;
+    background-color: var(--secondary-color); /* Koyu Turuncu/Kırmızı */
+    padding: 15px 30px;
+    border: none; /* Butonun kenarlığı olmasın */
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1.3em;
+    cursor: pointer;
+    transition: background-color var(--transition-speed), transform var(--transition-speed);
+    box-shadow: 0 8px 20px rgba(255, 87, 34, 0.5);
+    text-transform: uppercase;
+}
+
+.product-overlay .view-details:hover {
+    background-color: #e64a19;
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(255, 87, 34, 0.7);
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px;
+    gap: 30px;
+}
+
+.pagination-button {
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 18px 35px; /* Daha büyük butonlar */
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1.25em;
+    cursor: pointer;
+    transition: background-color var(--transition-speed), transform var(--transition-speed), box-shadow var(--transition-speed);
+    box-shadow: 0 8px 20px rgba(0, 188, 212, 0.5);
+}
+
+.pagination-button:hover:not(.disabled) {
+    background-color: #008ba3; /* Mavinin koyu tonu */
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 188, 212, 0.7);
+}
+
+.pagination-button.disabled {
+    background-color: #4a4a4a;
+    cursor: not-allowed;
+    opacity: 0.6;
+    box-shadow: none;
+}
+
+.page-info {
+    font-size: 1.4em;
+    color: var(--light-text);
+    font-weight: 600;
+    letter-spacing: 0.8px;
+}
+
+/* Footer Stil */
+.main-footer {
+    background-color: var(--footer-bg);
+    color: var(--light-text);
+    padding: 70px 0 30px;
+    font-size: 1em;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    z-index: 1; /* Diğer arka planların üstünde olması için */
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 50px;
+    margin-bottom: 60px;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 300px;
+}
+
+.footer-section h3 {
+    color: var(--primary-color);
+    font-size: 1.6em;
+    margin-bottom: 30px;
+    position: relative;
+    padding-bottom: 15px;
+    letter-spacing: 0.8px;
+}
+
+.footer-section h3::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 70px;
+    height: 5px;
+    background-color: var(--accent-color);
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(253, 216, 53, 0.5);
+}
+
+.footer-section p,
+.footer-section ul {
+    color: #b0b0b0;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 15px;
+}
+
+.footer-section ul li a {
+    color: #b0b0b0;
+    transition: color var(--transition-speed);
+}
+
+.footer-section ul li a:hover {
+    color: var(--accent-color);
+}
+
+.social-icons {
+    display: flex;
+    gap: 25px;
+    margin-top: 25px;
+}
+
+.social-icons img {
+    width: 45px; /* Daha büyük ikonlar */
+    height: 45px;
+    border-radius: 50%;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed), filter var(--transition-speed);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    filter: grayscale(100%); /* Başlangıçta gri */
+}
+
+.social-icons img:hover {
+    transform: translateY(-6px) scale(1.2) rotate(8deg);
+    box-shadow: 0 0 25px rgba(253, 216, 53, 0.7); /* Sarı parıltı */
+    filter: grayscale(0%); /* Renkli hale gelme */
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #808080;
+    font-size: 0.95em;
+}
+
+.footer-bottom p {
+    margin-bottom: 10px;
+}
+
+/* Back to Top Button */
+.back-to-top-btn {
+    display: none;
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px; /* Daha büyük */
+    height: 60px;
+    font-size: 2.2em;
+    line-height: 60px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(0, 188, 212, 0.6);
+    transition: background-color var(--transition-speed), transform var(--transition-speed), opacity var(--transition-speed);
+    z-index: 999;
+}
+
+.back-to-top-btn:hover {
+    background-color: #008ba3;
+    transform: translateY(-8px) scale(1.08);
+    box-shadow: 0 15px 30px rgba(0, 188, 212, 0.8);
+}
+
+/* Responsive Tasarım */
+@media (max-width: 992px) {
+    .hero-content h1 {
+        font-size: 4em;
+    }
+
+    .hero-content h2 {
+        font-size: 2.2em;
+    }
+
+    .section-title {
+        font-size: 3.2em;
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 40px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-section {
+        min-width: unset;
+        width: 100%;
+        margin-bottom: 30px;
+    }
+
+    .footer-section h3::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+
+    .back-to-top-btn {
+        bottom: 30px;
+        right: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 90px; /* Header yüksekliği */
+        left: 0;
+        background-color: var(--header-bg);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        padding: 25px 0;
+        backdrop-filter: blur(12px);
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .main-nav.active {
+        display: flex;
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+        text-align: center;
+        gap: 25px;
+    }
+
+    .main-nav ul li a {
+        font-size: 1.4em;
+        padding: 15px 0;
+        display: block;
+    }
+    
+    .main-nav a::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .nav-toggle {
+        display: block;
+    }
+
+    .hero-content {
+        padding: 30px;
+    }
+
+    .hero-content h1 {
+        font-size: 3.5em;
+    }
+
+    .hero-content h2 {
+        font-size: 1.8em;
+    }
+
+    .cta-button {
+        padding: 18px 35px;
+        font-size: 1.3em;
+    }
+
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section-title {
+        font-size: 2.8em;
+        margin-bottom: 60px;
+    }
+    
+    .pagination {
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .back-to-top-btn {
+        bottom: 25px;
+        right: 25px;
+        width: 50px;
+        height: 50px;
+        font-size: 1.8em;
+        line-height: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    .brand-logo {
+        font-size: 1.8em;
+        letter-spacing: 1px;
+    }
+
+    .brand-logo img {
+        height: 40px;
+        margin-right: 10px;
+    }
+
+    .hero-content {
+        padding: 25px;
+    }
+
+    .hero-content h1 {
+        font-size: 2.8em;
+    }
+
+    .hero-content h2 {
+        font-size: 1.5em;
+    }
+
+    .cta-button {
+        padding: 15px 30px;
+        font-size: 1.1em;
+    }
+
+    .section-title {
+        font-size: 2.2em;
+        margin-bottom: 50px;
+    }
+
+    .product-item h3 {
+        font-size: 1.6em;
+    }
+
+    .product-item p {
+        font-size: 1em;
+    }
+
+    .product-item img {
+        height: 300px; /* Daha küçük ekranlarda daha uygun yükseklik */
+    }
+}
