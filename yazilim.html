@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kurumsal Yazılım Çözümleri: Web & Mobil Uygulama Geliştirme - BUGRA FC</title>
+    
+    <meta name="description" content="Şirketlere özel mobil uygulamalar, kişiye özel web siteleri ve KOBİ'ler için randevu ve QR menü sistemleri. BUGRA FC ile işletmenizin dijital potansiyelini açığa çıkarın.">
+    <meta name="keywords" content="kurumsal yazılım, özel mobil uygulama, kişiye özel web sitesi, yazılım ajansı, Buğra FC">
+    <meta name="author" content="BUGRA FC">
+    <meta name="theme-color" content="#0f0c29">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body { font-family: 'Poppins', sans-serif; background-color: #0a0a0a; color: #e5e7eb; }
+        .animated-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: linear-gradient(45deg, #0f0c29, #302b63, #24243e, #1f379b); background-size: 400% 400%; animation: gradient-animation 20s ease infinite; }
+        @keyframes gradient-animation { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        ::-webkit-scrollbar { width: 8px; } ::-webkit-scrollbar-track { background: #111827; } ::-webkit-scrollbar-thumb { background: #0ea5e9; border-radius: 10px; }
+        .fade-in-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .is-visible { opacity: 1; transform: translateY(0); }
+
+        .glass-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); transition: transform 0.3s ease, background 0.3s ease; }
+        .glass-card:hover { background: rgba(255, 255, 255, 0.1); transform: translateY(-5px) scale(1.02); }
+        
+        .shine-button { position: relative; overflow: hidden; }
+        .shine-button::before { content: ''; position: absolute; top: 0; left: -100%; width: 75%; height: 100%; background: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%); transform: skewX(-25deg); transition: left 0.7s ease-in-out; }
+        .shine-button:hover::before { left: 150%; }
+
+        .marquee-container { overflow: hidden; white-space: nowrap; display: flex; gap: 3rem; }
+        .marquee { display: inline-flex; animation: marquee-scroll 40s linear infinite; gap: 3rem; align-items: center; }
+        @keyframes marquee-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+        .marquee-icon { height: 32px; sm:height: 40px; filter: grayscale(100%) opacity(0.6); transition: filter 0.3s ease; }
+        .marquee-icon:hover { filter: grayscale(0%) opacity(1); }
+        
+        #hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden; }
+        .dot { position: absolute; background: rgba(29, 78, 216, 0.5); border-radius: 50%; animation: move 20s infinite linear; }
+        @keyframes move { 0% { transform: translate(0, 0); } 50% { transform: translate(100px, 100px); } 100% { transform: translate(0, 0); } }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+    <div class="animated-bg"></div>
+    
+    <header class="fixed top-0 left-0 w-full bg-black/30 backdrop-blur-sm z-40 shadow-lg shadow-sky-900/10">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="index2.html" class="text-3xl font-black text-white tracking-wider hover:text-sky-400">BUGRA FC</a>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="hakkımda.html" class="text-gray-200 hover:text-sky-400 font-semibold">Hakkımızda</a>
+                    <a href="Yazilim.html" class="text-sky-400 font-bold">Yazılım</a>
+                    <a href="GrafikTasarim.html" class="text-gray-200 hover:text-sky-400 font-semibold">Grafik Tasarım</a>
+                    <a href="SosyalMedya.html" class="text-gray-200 hover:text-sky-400 font-semibold">Sosyal Medya</a>
+                    <a href="iletişim.html" class="text-gray-200 hover:text-sky-400 font-semibold">İletişim</a>
+                </nav>
+                <div class="md:hidden"><button id="menu-btn" class="text-white"><i id="menu-icon" data-lucide="menu" class="w-8 h-8"></i></button></div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-black/50">
+            <a href="hakkımda.html" class="block py-3 px-6 text-white text-center hover:bg-sky-500/20">Hakkımızda</a>
+            <a href="Yazilim.html" class="block py-3 px-6 text-sky-400 font-bold text-center bg-sky-500/10">Yazılım</a>
+            <a href="GrafikTasarim.html" class="block py-3 px-6 text-white text-center hover:bg-sky-500/20">Grafik Tasarım</a>
+            <a href="SosyalMedya.html" class="block py-3 px-6 text-white text-center hover:bg-sky-500/20">Sosyal Medya</a>
+            <a href="iletişim.html" class="block py-3 px-6 text-white text-center hover:bg-sky-500/20">İletişim</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="relative py-20 sm:py-24 lg:py-32 text-center overflow-hidden">
+            <div id="hero-bg"></div>
+            <div class="container mx-auto px-4 z-10">
+                <h1 class="text-4xl sm:text-5xl lg:text-7xl font-black text-white leading-tight mb-8 fade-in-up">
+                    İşletmenizi Geleceğe Taşıyan
+                    <br class="hidden md:block">
+                    <span class="text-sky-400">Özel Yazılım Çözümleri</span>
+                </h1>
+                <p class="text-base sm:text-lg lg:text-xl text-gray-300 max-w-4xl mx-auto mb-10 fade-in-up" style="transition-delay: 200ms;">Kurumsal mobil uygulamalardan kişiye özel web sitelerine, verimliliği artıran otomasyon sistemlerinden niş sektör çözümlerine kadar, dijital potansiyelinizi açığa çıkarıyoruz.</p>
+                <a href="#hizmetler" class="shine-button inline-block px-8 py-3 sm:px-10 sm:py-4 bg-sky-500 text-white font-bold rounded-full transition-all duration-300 hover:bg-sky-600 hover:scale-105 shadow-lg shadow-sky-500/30 fade-in-up" style="transition-delay: 400ms;">Çözümlerimizi Keşfedin</a>
+            </div>
+        </section>
+
+        <section id="hizmetler" class="py-16 sm:py-20 lg:py-24">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12 sm:mb-16">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-white fade-in-up">Yazılım Geliştirme Uzmanlıklarımız</h2>
+                    <p class="text-base sm:text-lg text-gray-400 mt-4 max-w-3xl mx-auto fade-in-up" style="transition-delay: 150ms;">İşletmenizin ölçeği ne olursa olsun, ihtiyaçlarınıza özel, anahtar teslim dijital çözümler üretiyoruz.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-6xl mx-auto">
+                    <div class="glass-card p-6 sm:p-8 rounded-2xl flex flex-col fade-in-up" style="transition-delay: 300ms;"><i data-lucide="layout-template" class="w-10 h-10 sm:w-12 sm:h-12 text-sky-400 mb-4"></i><h3 class="text-xl sm:text-2xl font-bold text-white mb-3">Kişiye Özel Web Tasarım ve Geliştirme</h3><p class="text-sm sm:text-base text-gray-300 mb-4 flex-grow">Sıradan temalardan sıyrılın. Marka kimliğinizi ve hedeflerinizi yansıtan, tamamen size özel, yüksek performanslı ve yönetimi kolay web siteleri tasarlıyoruz.</p><ul class="text-sky-300 space-y-2 text-xs sm:text-sm mt-auto"><li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4"></i><span>Özgün ve Modern Arayüz Tasarımı (UI/UX)</span></li><li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4"></i><span>SEO Uyumlu Altyapı ve Yüksek Performans</span></li><li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4"></i><span>Size Özel Yönetim Paneli</span></li></ul></div>
+                    <div class="glass-card p-6 sm:p-8 rounded-2xl flex flex-col fade-in-up" style="transition-delay: 450ms;"><i data-lucide="smartphone-cog" class="w-10 h-10 sm:w-12 sm:h-12 text-sky-400 mb-4"></i><h3 class="text-xl sm:text-2xl font-bold text-white mb-3">Şirketlere Özel Mobil Uygulamalar</h3><p class="text-sm sm:text-base text-gray-300 mb-4 flex-grow">İş süreçlerinizi cebinize taşıyın. Saha ekipleriniz, yöneticileriniz veya müşterileriniz için verimliliği artıran, güvenli ve şirket sistemlerinizle (ERP, CRM) tam entegre çalışan kurumsal mobil uygulamalar geliştiriyoruz.</p><ul class="text-sky-300 space-y-2 text-xs sm:text-sm mt-auto"><li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4"></i><span>Dahili İş Akışları ve Otomasyon</span></li><li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4"></i><span>Gerçek Zamanlı Raporlama ve Analiz</span></li><li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4"></i><span>ERP/CRM Sistemleri ile Tam Entegrasyon</span></li></ul></div>
+                    <div class="glass-card p-6 sm:p-8 rounded-2xl flex flex-col fade-in-up" style="transition-delay: 600ms;"><i data-lucide="calendar-check" class="w-10 h-10 sm:w-12 sm:h-12 text-sky-400 mb-4"></i><h3 class="text-xl sm:text-2xl font-bold text-white mb-3">Akıllı Randevu & Müşteri Yönetimi</h3><p class="text-sm sm:text-base text-gray-300 mb-4 flex-grow">Kuaförler, klinikler ve danışmanlık merkezleri için tasarlanmış bu sistemle telefon trafiğini bitirin, randevu çakışmalarına son verin ve otomatik hatırlatmalarla gelmeyen müşteri oranını düşürün.</p><ul class="text-sky-300 space-y-2 text-xs sm:text-sm mt-auto"><li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4"></i><span>7/24 Online Randevu Alma</span></li><li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4"></i><span>Otomatik SMS ve E-posta Bildirimleri</span></li></ul></div>
+                    <div class="glass-card p-6 sm:p-8 rounded-2xl flex flex-col fade-in-up" style="transition-delay: 750ms;"><i data-lucide="qr-code" class="w-10 h-10 sm:w-12 sm:h-12 text-sky-400 mb-4"></i><h3 class="text-xl sm:text-2xl font-bold text-white mb-3">İnteraktif QR Menü & Sipariş</h3><p class="text-sm sm:text-base text-gray-300 mb-4 flex-grow">Kafe ve restoranlar için baskı maliyetlerini ortadan kaldıran, anında güncellenebilen dinamik QR menüler. Müşterilerinizin iştahını kabartın, masadan sipariş alarak servis hızınızı ve cironuzu artırın.</p><ul class="text-sky-300 space-y-2 text-xs sm:text-sm mt-auto"><li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4"></i><span>Anında Menü Güncelleme</span></li><li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4"></i><span>Masadan Sipariş ve Ödeme (Opsiyonel)</span></li></ul></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-12 bg-black/30 backdrop-blur-sm"><div class="marquee-container"><div class="marquee" aria-hidden="true"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="React" class="marquee-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" alt="Node.js" class="marquee-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python" class="marquee-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Flutter-logo.svg" alt="Flutter" class="marquee-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Swift_logo.svg" alt="Swift" class="marquee-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" alt="AWS" class="marquee-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Docker_%28container_engine%29_logo.svg" alt="Docker" class="marquee-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg" alt="PostgreSQL" class="marquee-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="React" class="marquee-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" alt="Node.js" class="marquee-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python" class="marquee-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Flutter-logo.svg" alt="Flutter" class="marquee-icon"></div></div></section>
+
+        <section class="py-16 sm:py-20 lg:py-24">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12 sm:mb-16"><h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white fade-in-up">Neden Bizimle Çalışmalısınız?</h2><p class="text-base sm:text-lg text-gray-400 mt-4 max-w-3xl mx-auto fade-in-up" style="transition-delay: 150ms;">Sadece yazılım sunmuyor, işletmenizin büyüme ortağı oluyoruz.</p></div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
+                    <div class="glass-card p-6 sm:p-8 rounded-2xl fade-in-up" style="transition-delay: 200ms;"><i data-lucide="mouse-pointer-click" class="w-10 h-10 sm:w-12 sm:h-12 text-sky-400 mb-4"></i><h3 class="text-xl sm:text-2xl font-bold text-white mb-3">Kolay Kullanım</h3><p class="text-sm sm:text-base text-gray-300">Teknolojiyle aranız iyi olmasa bile, size özel tasarladığımız arayüzler sayesinde sistemlerimizi dakikalar içinde kullanmaya başlarsınız.</p></div>
+                    <div class="glass-card p-6 sm:p-8 rounded-2xl fade-in-up" style="transition-delay: 350ms;"><i data-lucide="gem" class="w-10 h-10 sm:w-12 sm:h-12 text-sky-400 mb-4"></i><h3 class="text-xl sm:text-2xl font-bold text-white mb-3">İşletmenize Özel Çözümler</h3><p class="text-sm sm:text-base text-gray-300">Hazır paketler sunmuyoruz. İşletmenizin ihtiyaçlarını dinliyor, size en uygun ve esnek çözümü birlikte tasarlıyoruz.</p></div>
+                    <div class="glass-card p-6 sm:p-8 rounded-2xl fade-in-up" style="transition-delay: 500ms;"><i data-lucide="life-buoy" class="w-10 h-10 sm:w-12 sm:h-12 text-sky-400 mb-4"></i><h3 class="text-xl sm:text-2xl font-bold text-white mb-3">7/24 Kesintisiz Destek</h3><p class="text-sm sm:text-base text-gray-300">Sizi asla yalnız bırakmıyoruz. İhtiyaç duyduğunuz her an uzman ekibimiz bir telefon veya mesaj uzağınızda.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 sm:py-20 lg:py-24 bg-black/20">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12 sm:mb-16"><h2 class="text-3xl sm:text-4xl font-bold text-white fade-in-up">Sadece Kod Değil, Değer Sunuyoruz: Garantilerimiz</h2><p class="text-base sm:text-lg text-gray-400 mt-4 max-w-3xl mx-auto fade-in-up" style="transition-delay: 150ms;">Başarınız bizim için bir taahhüttür. Bu yüzden her projemizde bu üç temel garantiyi sunuyoruz.</p></div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
+                    <div class="glass-card p-6 sm:p-8 rounded-2xl fade-in-up" style="transition-delay: 200ms;"><i data-lucide="calendar-clock" class="w-10 h-10 sm:w-12 sm:h-12 text-sky-400 mb-4"></i><h3 class="text-xl sm:text-2xl font-bold text-white mb-3">Zamanında Teslimat Garantisi</h3><p class="text-sm sm:text-base text-gray-300">Projeniz için belirlenen takvimin ne kadar kritik olduğunu biliyoruz. Gelişmiş proje yönetimi metodolojilerimiz sayesinde, projenizi kararlaştırılan tarihte, söz verdiğimiz gibi teslim ediyoruz.</p></div>
+                    <div class="glass-card p-6 sm:p-8 rounded-2xl fade-in-up" style="transition-delay: 350ms;"><i data-lucide="trending-up" class="w-10 h-10 sm:w-12 sm:h-12 text-sky-400 mb-4"></i><h3 class="text-xl sm:text-2xl font-bold text-white mb-3">Ölçeklenebilir Gelecek Garantisi</h3><p class="text-sm sm:text-base text-gray-300">Bugünün ihtiyaçları için değil, yarının büyümesi için kodluyoruz. Geliştirdiğimiz tüm yazılımlar, işletmeniz büyüdükçe size kolayca adapte olabilecek esnek bir mimari ile inşa edilir.</p></div>
+                    <div class="glass-card p-6 sm:p-8 rounded-2xl fade-in-up" style="transition-delay: 500ms;"><i data-lucide="shield-check" class="w-10 h-10 sm:w-12 sm:h-12 text-sky-400 mb-4"></i><h3 class="text-xl sm:text-2xl font-bold text-white mb-3">Tam Memnuniyet & Şeffaflık Garantisi</h3><p class="text-sm sm:text-base text-gray-300">Süreç boyunca her adımda tam şeffaflık sunuyoruz. Düzenli raporlar ve açık iletişim ile projenizin ilerleyişinden daima haberdar olursunuz.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 sm:py-20 lg:py-24"><div class="container mx-auto px-4"><div class="text-center mb-12 sm:mb-16"><h2 class="text-3xl sm:text-4xl font-bold text-white fade-in-up">Geliştirme Sürecimiz</h2><p class="text-base sm:text-lg text-gray-400 mt-4 max-w-3xl mx-auto fade-in-up" style="transition-delay: 150ms;">Projenizi başarıya ulaştırmak için şeffaf ve kanıtlanmış bir süreç izliyoruz.</p></div><div class="grid md:grid-cols-3 gap-8 text-center max-w-6xl mx-auto"><div class="bg-gray-900/30 p-8 rounded-2xl fade-in-up" style="transition-delay: 300ms;"><div class="flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-6 bg-sky-500/10 border-2 border-sky-500 rounded-full"><i data-lucide="search" class="w-8 h-8 sm:w-10 sm:h-10 text-sky-400"></i></div><h3 class="text-xl sm:text-2xl font-bold text-white mb-3">01. Keşif ve Strateji</h3><p class="text-sm sm:text-base text-gray-400">Hedeflerinizi anlıyor, projenizin teknik gereksinimlerini belirliyor ve başarı için sağlam bir temel oluşturuyoruz.</p></div><div class="bg-gray-900/30 p-8 rounded-2xl fade-in-up" style="transition-delay: 450ms;"><div class="flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-6 bg-sky-500/10 border-2 border-sky-500 rounded-full"><i data-lucide="layout-template" class="w-8 h-8 sm:w-10 sm:h-10 text-sky-400"></i></div><h3 class="text-xl sm:text-2xl font-bold text-white mb-3">02. Tasarım ve Geliştirme</h3><p class="text-sm sm:text-base text-gray-400">Kullanıcı odaklı UI/UX tasarımları hazırlıyor ve projenizi çevik (agile) metodolojilerle hayata geçiriyoruz.</p></div><div class="bg-gray-900/30 p-8 rounded-2xl fade-in-up" style="transition-delay: 600ms;"><div class="flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-6 bg-sky-500/10 border-2 border-sky-500 rounded-full"><i data-lucide="rocket" class="w-8 h-8 sm:w-10 sm:h-10 text-sky-400"></i></div><h3 class="text-xl sm:text-2xl font-bold text-white mb-3">03. Test ve Lansman</h3><p class="text-sm sm:text-base text-gray-400">Uygulamanızı titizlikle test ediyor, kusursuz bir şekilde yayınlıyor ve lansman sonrası destek sağlıyoruz.</p></div></div></div></section>
+        
+        <section class="py-16 sm:py-20">
+            <div class="container mx-auto px-4 text-center">
+                <div class="bg-gray-900/50 p-8 sm:p-12 rounded-2xl max-w-4xl mx-auto border border-sky-500/30 fade-in-up">
+                     <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Projenizi Hayata Geçirmeye Hazır Mısınız?</h2>
+                     <p class="text-base sm:text-lg text-gray-300 mb-8">Yazılım ihtiyacınız ne olursa olsun, uzman ekibimiz size en iyi çözümü sunmak için burada.</p>
+                     <a href="Iletisim.html" class="shine-button inline-block px-8 py-3 sm:px-10 sm:py-4 bg-sky-500 text-white font-bold rounded-full transition-all duration-300 hover:bg-sky-600 hover:scale-105 shadow-lg shadow-sky-500/30">Ücretsiz Danışmanlık Alın</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-8 bg-black/50"><div class="container mx-auto px-4 text-center text-gray-500"><p>© 2025 BUGRA FC. Tüm Hakları Saklıdır.</p></div></footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            const menuBtn = document.getElementById('menu-btn'), mobileMenu = document.getElementById('mobile-menu'), menuIcon = document.getElementById('menu-icon');
+            menuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); menuIcon.setAttribute('data-lucide', mobileMenu.classList.contains('hidden') ? 'menu' : 'x'); lucide.createIcons(); });
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        if (entry.target.classList.contains('fade-in-up')) { entry.target.classList.add('is-visible'); }
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.fade-in-up').forEach(el => { observer.observe(el); });
+
+            const heroBg = document.getElementById('hero-bg');
+            if (heroBg) {
+                for (let i = 0; i < 20; i++) {
+                    const dot = document.createElement('div');
+                    dot.classList.add('dot');
+                    const size = Math.random() * 5 + 2;
+                    dot.style.width = `${size}px`; dot.style.height = `${size}px`; dot.style.left = `${Math.random() * 100}%`; dot.style.top = `${Math.random() * 100}%`; dot.style.animationDuration = `${Math.random() * 20 + 10}s`; dot.style.animationDelay = `${Math.random() * 5}s`;
+                    heroBg.appendChild(dot);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

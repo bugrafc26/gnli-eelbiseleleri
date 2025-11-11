@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İletişim - Projenizi Hayata Geçirelim | BUGRA FC</title>
+    
+    <meta name="description" content="Bir fikriniz mi var? Projenizi hayata geçirmek, hizmetlerimiz hakkında bilgi almak veya sadece bir kahve içmek için bizimle iletişime geçin. Sizi dinlemeye hazırız.">
+    <meta name="keywords" content="iletişim, teklif al, yazılım projesi, dijital ajans, Buğra FC">
+    <meta name="author" content="BUGRA FC">
+    <meta name="theme-color" content="#0f0c29">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+    <style>
+        body { font-family: 'Poppins', sans-serif; background-color: #0a0a0a; color: #e5e7eb; }
+        .animated-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: linear-gradient(45deg, #0f0c29, #302b63, #24243e, #1f379b); background-size: 400% 400%; animation: gradient-animation 20s ease infinite; }
+        @keyframes gradient-animation { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        ::-webkit-scrollbar { width: 8px; } ::-webkit-scrollbar-track { background: #111827; } ::-webkit-scrollbar-thumb { background: #0ea5e9; border-radius: 10px; }
+        .fade-in-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .is-visible { opacity: 1; transform: translateY(0); }
+        
+        .shine-button { position: relative; overflow: hidden; }
+        .shine-button::before { content: ''; position: absolute; top: 0; left: -100%; width: 75%; height: 100%; background: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%); transform: skewX(-25deg); transition: left 0.7s ease-in-out; }
+        .shine-button:hover::before { left: 150%; }
+        
+        .form-input { background: rgba(15, 23, 42, 0.5); border: 1px solid rgba(51, 65, 85, 0.7); transition: border-color 0.3s, box-shadow 0.3s; }
+        .form-input:focus { outline: none; border-color: #0ea5e9; box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.5); }
+
+        .sending { background-color: #f59e0b !important; cursor: not-allowed; }
+        .sending .button-text { display: none; }
+        .sending .spinner { display: inline-block; }
+        .spinner { display: none; width: 20px; height: 20px; border: 2px solid #fff; border-top-color: transparent; border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+    <div class="animated-bg"></div>
+    
+    <header class="fixed top-0 left-0 w-full bg-black/30 backdrop-blur-sm z-40 shadow-lg shadow-sky-900/10">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="index2.html" class="text-3xl font-black text-white tracking-wider hover:text-sky-400">BUGRA FC</a>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="index2.html" class="text-gray-200 hover:text-sky-400 font-semibold">Anasayfa</a>
+                    <a href="hakkımda.html" class="text-gray-200 hover:text-sky-400 font-semibold">Hakkımızda</a>
+                    <a href="Yazilim.html" class="text-gray-200 hover:text-sky-400 font-semibold">Yazılım</a>
+                    <a href="GrafikTasarim.html" class="text-gray-200 hover:text-sky-400 font-semibold">Grafik Tasarım</a>
+                    <a href="SosyalMedya.html" class="text-gray-200 hover:text-sky-400 font-semibold">Sosyal Medya</a>
+                    <a href="iletişim.html" class="text-sky-400 font-bold">İletişim</a>
+                </nav>
+                <div class="md:hidden"><button id="menu-btn" class="text-white"><i id="menu-icon" data-lucide="menu" class="w-8 h-8"></i></button></div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-black/50">
+            <a href="index2.html" class="block py-3 px-6 text-white text-center hover:bg-sky-500/20">Anasayfa</a>
+            <a href="hakkımda.html" class="block py-3 px-6 text-white text-center hover:bg-sky-500/20">Hakkımızda</a>
+            <a href="Yazilim.html" class="block py-3 px-6 text-white text-center hover:bg-sky-500/20">Yazılım</a>
+            <a href="GrafikTasarim.html" class="block py-3 px-6 text-white text-center hover:bg-sky-500/20">Grafik Tasarım</a>
+            <a href="SosyalMedya.html" class="block py-3 px-6 text-white text-center hover:bg-sky-500/20">Sosyal Medya</a>
+            <a href="iletişim.html" class="block py-3 px-6 text-sky-400 font-bold text-center bg-sky-500/10">İletişim</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="relative py-24 sm:py-32 text-center overflow-hidden">
+            <div class="container mx-auto px-4 z-10">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-6 fade-in-up">Fikrinizi Başarıya Dönüştürmek İçin Buradayız</h1>
+                <p class="text-base sm:text-lg lg:text-xl text-gray-300 max-w-3xl mx-auto fade-in-up" style="transition-delay: 200ms;">Aklınızdaki proje hakkında konuşmak, hizmetlerimiz hakkında daha fazla bilgi almak veya dijital hedeflerinizi tartışmak için bize ulaşın. Sizi dinlemeye hazırız.</p>
+            </div>
+        </section>
+
+        <section class="py-16 sm:py-20 lg:py-24">
+            <div class="container mx-auto px-4">
+                <div class="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                    <div class="fade-in-up" style="transition-delay: 300ms;">
+                        <h2 class="text-3xl font-bold text-white mb-8">Hızlı İletişim Kanalları</h2>
+                        <div class="space-y-8">
+                            <div class="flex items-start gap-4 group"><i data-lucide="mail" class="w-10 h-10 text-sky-400 flex-shrink-0"></i><div><h3 class="text-xl font-semibold text-white">Proje ve Teklifler İçin E-posta</h3><p class="text-gray-400 mb-2">Tüm proje talepleriniz ve sorularınız için bize yazın.</p><a href="mailto:iletisim@bugrafc.com" class="font-semibold text-sky-400 group-hover:text-sky-300 transition-colors">iletisim@bugrafc.com</a></div></div>
+                            <div class="flex items-start gap-4"><i data-lucide="clock" class="w-10 h-10 text-sky-400 flex-shrink-0"></i><div><h3 class="text-xl font-semibold text-white">Ortalama Yanıt Süresi</h3><p class="text-gray-400">Gönderdiğiniz tüm mesajlara genellikle 24 saat içinde yanıt veriyoruz.</p></div></div>
+                        </div>
+                        
+                        <div class="mt-12 pt-8 border-t border-slate-800">
+                            <h3 class="text-2xl font-bold text-white mb-4">Sosyal Medyada Bizi Takip Edin</h3>
+                            <div class="flex gap-4 flex-wrap">
+                                <a href="https://www.instagram.com/bugrafcyt/" target="_blank" rel="noopener noreferrer" class="p-3 bg-slate-800/50 rounded-full hover:bg-sky-500/20 hover:text-sky-400 transition-all" aria-label="Instagram">
+                                    <i data-lucide="instagram" class="w-6 h-6"></i>
+                                </a>
+                                <a href="https://x.com/bugrafcyoutube" target="_blank" rel="noopener noreferrer" class="p-3 bg-slate-800/50 rounded-full hover:bg-sky-500/20 hover:text-sky-400 transition-all" aria-label="Twitter">
+                                    <i data-lucide="twitter" class="w-6 h-6"></i>
+                                </a>
+                                <a href="#" class="p-3 bg-slate-800/50 rounded-full hover:bg-sky-500/20 hover:text-sky-400 transition-all" aria-label="LinkedIn">
+                                    <i data-lucide="linkedin" class="w-6 h-6"></i>
+                                </a>
+                                <a href="https://www.youtube.com/@BUGRAFC/shorts" target="_blank" rel="noopener noreferrer" class="p-3 bg-slate-800/50 rounded-full hover:bg-sky-500/20 hover:text-sky-400 transition-all" aria-label="YouTube">
+                                    <i data-lucide="youtube" class="w-6 h-6"></i>
+                                </a>
+                                
+                                <a href="https://www.tiktok.com/@bugrafc26__" target="_blank" rel="noopener noreferrer" class="p-3 bg-slate-800/50 rounded-full hover:bg-sky-500/20 hover:text-sky-400 transition-all" aria-label="TikTok">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="w-6 h-6" fill="currentColor">
+                                        <path d="M448 209.91a210.06 210.06 0 0 1-122.77-39.25V349.38A162.55 162.55 0 1 1 185 188.31V278.2a74.62 74.62 0 1 0 52.23 71.18V0l88 0a121.18 121.18 0 0 0 1.86 22.17h0A122.18 122.18 0 0 0 381 102.39a121.43 121.43 0 0 0 67 20.14z"/>
+                                    </svg>
+                                    </a>
+                            </div>
+                        </div>
+                        </div>
+
+                    <div class="bg-slate-900/50 p-6 sm:p-8 rounded-2xl border border-slate-800 fade-in-up" style="transition-delay: 450ms;">
+                        <h2 class="text-3xl font-bold text-white mb-6">Proje Formu</h2>
+                        <form id="contact-form" class="space-y-6">
+                            <div><label for="name" class="block text-sm font-medium text-gray-300 mb-2">Adınız Soyadınız</label><input type="text" id="name" name="from_name" required class="form-input w-full px-4 py-3 rounded-lg text-white" placeholder="Adınız ve Soyadınız"></div>
+                            <div><label for="email" class="block text-sm font-medium text-gray-300 mb-2">E-posta Adresiniz</label><input type="email" id="email" name="from_email" required class="form-input w-full px-4 py-3 rounded-lg text-white" placeholder="ornek@mail.com"></div>
+                            <div><label for="service" class="block text-sm font-medium text-gray-300 mb-2">İlgilendiğiniz Hizmet</label><select id="service" name="service_type" class="form-input w-full px-4 py-3 rounded-lg text-white"><option>Hizmet Seçin...</option><option>Yazılım Geliştirme</option><option>Grafik Tasarım</option><option>Sosyal Medya Yönetimi</option><option>Diğer</option></select></div>
+                            <div><label for="message" class="block text-sm font-medium text-gray-300 mb-2">Mesajınız</label><textarea id="message" name="message" rows="5" required class="form-input w-full px-4 py-3 rounded-lg text-white" placeholder="Projenizden veya fikrinizden bahsedin..."></textarea></div>
+                            <div><button type="submit" id="submit-button" class="shine-button w-full px-6 py-4 bg-sky-600 text-white font-bold rounded-lg transition-all duration-300 hover:bg-sky-700 hover:scale-105 flex items-center justify-center"><span class="button-text">Mesajı Gönder</span><span class="spinner"></span></button></div>
+                        </form>
+                        <div id="success-message" class="hidden text-center p-6 bg-green-500/20 border border-green-500 rounded-lg"><i data-lucide="check-circle" class="w-12 h-12 text-green-400 mx-auto mb-4"></i><h3 class="text-xl font-bold text-white">Mesajınız Alındı!</h3><p class="text-green-300 mt-2">En kısa sürede size geri dönüş yapacağız. Teşekkür ederiz.</p></div>
+                        <div id="error-message" class="hidden text-center p-6 bg-red-500/20 border border-red-500 rounded-lg"><i data-lucide="x-circle" class="w-12 h-12 text-red-400 mx-auto mb-4"></i><h3 class="text-xl font-bold text-white">Bir Hata Oluştu!</h3><p class="text-red-300 mt-2">Mesaj gönderilemedi. Lütfen bilgilerinizi kontrol edip tekrar deneyin.</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-8 bg-black/50"><div class="container mx-auto px-4 text-center text-gray-500"><p>© 2025 BUGRA FC. Tüm Hakları Saklıdır.</p></div></footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // İkonları oluştur (SVG olan TikTok hariç)
+            lucide.createIcons();
+            
+            // Mobil menü toggle
+            const menuBtn = document.getElementById('menu-btn'), mobileMenu = document.getElementById('mobile-menu'), menuIcon = document.getElementById('menu-icon');
+            menuBtn.addEventListener('click', () => { 
+                mobileMenu.classList.toggle('hidden'); 
+                menuIcon.setAttribute('data-lucide', mobileMenu.classList.contains('hidden') ? 'menu' : 'x'); 
+                lucide.createIcons(); // İkon setini (menu/x) yeniden çiz
+            });
+            
+            // Scroll animasyonları
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        if (entry.target.classList.contains('fade-in-up')) { 
+                            entry.target.classList.add('is-visible'); 
+                        }
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.fade-in-up').forEach(el => { observer.observe(el); });
+
+            // EmailJS Form
+            const contactForm = document.getElementById('contact-form');
+            if (contactForm) {
+                const successMessage = document.getElementById('success-message');
+                const errorMessage = document.getElementById('error-message');
+                const submitButton = document.getElementById('submit-button');
+                
+                const publicKey = "R65OiAFnDldfdiV_D";
+                const serviceID = "service_94xk56i";
+                const templateID = "template_i8wmdhr";
+
+                emailjs.init({ publicKey: publicKey });
+
+                contactForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    submitButton.classList.add('sending');
+                    submitButton.disabled = true;
+
+                    emailjs.sendForm(serviceID, templateID, contactForm)
+                        .then(() => {
+                            contactForm.style.display = 'none';
+                            successMessage.classList.remove('hidden');
+                            lucide.createIcons(); // Başarı ikonunu çiz
+                        }, (err) => {
+                            contactForm.style.display = 'none';
+                            errorMessage.classList.remove('hidden');
+                            lucide.createIcons(); // Hata ikonunu çiz
+                        });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
