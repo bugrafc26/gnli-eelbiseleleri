@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BUGRA FC | Dijital Çözüm Ortağınız: Yazılım, Tasarım, Sosyal Medya</title>
+    
+    <meta name="description" content="Yaratıcı video içeriklerimiz, kanıtlanmış sosyal medya gücümüz ve size özel yazılım projelerimizle tanışın. BUGRA FC olarak markanızın digitaldeki en güçlü partneriyiz.">
+    <meta name="keywords" content="yazılım, grafik tasarım, sosyal medya, video içerik, dijital ajans, Buğra FC">
+    <meta name="author" content="BUGRA FC">
+    <meta name="theme-color" content="#0f0c29">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body { font-family: 'Poppins', sans-serif; background-color: #0a0a0a; color: #e5e7eb; }
+        .animated-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: linear-gradient(45deg, #0f0c29, #302b63, #24243e, #1f379b); background-size: 400% 400%; animation: gradient-animation 20s ease infinite; }
+        @keyframes gradient-animation { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        ::-webkit-scrollbar { width: 8px; } ::-webkit-scrollbar-track { background: #111827; } ::-webkit-scrollbar-thumb { background: #0ea5e9; border-radius: 10px; }
+        .fade-in-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .is-visible { opacity: 1; transform: translateY(0); }
+
+        .interactive-card { position: relative; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 1.5rem; transform-style: preserve-3d; transition: transform 0.4s ease-out; will-change: transform; min-height: 280px; }
+        @media (min-width: 1024px) { .interactive-card { aspect-ratio: 1 / 1; min-height: auto; height: 450px; } }
+        .interactive-card:hover { transform: perspective(1000px) rotateX(var(--rotateX)) rotateY(var(--rotateY)) scale3d(1.05, 1.05, 1.05); }
+        .card-content { transform: translateZ(40px); }
+        .card-glare { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; border-radius: 1.5rem; opacity: 0; transition: opacity 0.4s ease; mix-blend-mode: soft-light;}
+        .interactive-card:hover .card-glare { opacity: 1; }
+        .glare-element { position: absolute; width: 200%; height: 200%; top: -50%; left: -50%; background: radial-gradient(circle at center, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 50%); transform: translate(var(--glareX), var(--glareY)); }
+
+        .shine-button { position: relative; overflow: hidden; }
+        .shine-button::before { content: ''; position: absolute; top: 0; left: -100%; width: 75%; height: 100%; background: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%); transform: skewX(-25deg); transition: left 0.7s ease-in-out; }
+        .shine-button:hover::before { left: 150%; }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+    <div class="animated-bg"></div>
+    
+    <header class="fixed top-0 left-0 w-full bg-black/30 backdrop-blur-sm z-40 shadow-lg shadow-sky-900/10">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="index2.html" class="text-3xl font-black text-white tracking-wider hover:text-sky-400">BUGRA FC</a>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="index2.html" class="text-sky-400 font-bold">Anasayfa</a>
+                    <a href="hakkımda.html" class="text-gray-200 hover:text-sky-400 font-semibold">Hakkımızda</a>
+                    <a href="Yazilim.html" class="text-gray-200 hover:text-sky-400 font-semibold">Yazılım</a>
+                    <a href="GrafikTasarim.html" class="text-gray-200 hover:text-sky-400 font-semibold">Grafik Tasarım</a>
+                    <a href="SosyalMedya.html" class="text-gray-200 hover:text-sky-400 font-semibold">Sosyal Medya</a>
+                    <a href="iletişim.html" class="text-gray-200 hover:text-sky-400 font-semibold">İletişim</a>
+                </nav>
+                <div class="md:hidden"><button id="menu-btn" class="text-white"><i id="menu-icon" data-lucide="menu" class="w-8 h-8"></i></button></div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-black/50">
+            <a href="index2.html" class="block py-3 px-6 text-sky-400 font-bold text-center bg-sky-500/10">Anasayfa</a>
+            <a href="hakkımda.html" class="block py-3 px-6 text-white text-center hover:bg-sky-500/20">Hakkımızda</a>
+            <a href="yazilim.html" class="block py-3 px-6 text-white text-center hover:bg-sky-500/20">Yazılım</a>
+            <a href="GrafikTasarim.html" class="block py-3 px-6 text-white text-center hover:bg-sky-500/20">Grafik Tasarım</a>
+            <a href="SosyalMedya.html" class="block py-3 px-6 text-white text-center hover:bg-sky-500/20">Sosyal Medya</a>
+            <a href="iletişim.html" class="block py-3 px-6 text-white text-center hover:bg-sky-500/20">İletişim</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="py-20 sm:py-24 lg:py-32">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12 sm:mb-16">
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-4 fade-in-up">Yaratıcı Dünyamıza Göz Atın</h1>
+                    <p class="text-base sm:text-lg text-gray-400 max-w-3xl mx-auto fade-in-up" style="transition-delay: 150ms;">Fikirleri nasıl hayata geçirdiğimizi, uzmanlıklarımızı ve vizyonumuzu sergileyen içeriklerimizle tanışın.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <a href="https://youtu.be/SPs9cmTTOf8" target="_blank" class="group block fade-in-up" style="transition-delay: 300ms;">
+                        <div class="relative overflow-hidden rounded-2xl shadow-lg aspect-video">
+                            <img src="https://img.youtube.com/vi/SPs9cmTTOf8/hqdefault.jpg" alt="Python ile Discord Botu Yapımı" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                                <div class="w-16 h-16 bg-sky-500/80 rounded-full flex items-center justify-center transition-all duration-300 group-hover:bg-sky-500 group-hover:scale-110">
+                                    <i data-lucide="play" class="w-8 h-8 text-white fill-white"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4"><h3 class="text-lg font-bold text-white group-hover:text-sky-400 transition-colors">KEREM AKTÜRKOĞLU FENERBAHÇE'DE | SON GELİŞMELER</h3><p class="text-sm text-gray-400 mt-1">FENERBAHÇEYE TRANSFER OLAN KEREM AKJTÜRKOĞLU HAKKINDA DEĞERLENDİRMEM TIKLYARAK İZLEYEBİLİRSİNİZ'</p></div>
+                    </a>
+                    <a href="https://youtu.be/YfaI_lLEIiE" target="_blank" class="group block fade-in-up" style="transition-delay: 450ms;">
+                        <div class="relative overflow-hidden rounded-2xl shadow-lg aspect-video">
+                            <img src="https://img.youtube.com/vi/YfaI_lLEIiE/hqdefault.jpg" alt="Visual Studio Code Kurulumu" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                                <div class="w-16 h-16 bg-sky-500/80 rounded-full flex items-center justify-center transition-all duration-300 group-hover:bg-sky-500 group-hover:scale-110">
+                                    <i data-lucide="play" class="w-8 h-8 text-white fill-white"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4"><h3 class="text-lg font-bold text-white group-hover:text-sky-400 transition-colors">AZİZ YILDIRIM DİVAN KURULUNDA RACON KESTİ!!</h3><p class="text-sm text-gray-400 mt-1">TIKLAYIP VİDEO İZLEYEBİLİRSİNİZ</p></div>
+                    </a>
+                    <a href="https://youtu.be/x1vHBz7DPuw" target="_blank" class="group block fade-in-up" style="transition-delay: 600ms;">
+                        <div class="relative overflow-hidden rounded-2xl shadow-lg aspect-video">
+                            <img src="https://img.youtube.com/vi/x1vHBz7DPuw/hqdefault.jpg" alt="Windows Hızlandırma" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                                <div class="w-16 h-16 bg-sky-500/80 rounded-full flex items-center justify-center transition-all duration-300 group-hover:bg-sky-500 group-hover:scale-110">
+                                    <i data-lucide="play" class="w-8 h-8 text-white fill-white"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4"><h3 class="text-lg font-bold text-white group-hover:text-sky-400 transition-colors">SERGEN YALÇIN FENER'E Mİ GELİYOR? MOURİNHO İSTİFA EDİCEK Mİ? | GÜNDEM DEĞERLENDİRMESİ</h3><p class="text-sm text-gray-400 mt-1">TIKLAYIP VİDEO İZLEYEBİLİRSİNİZ</p></div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 sm:py-20 lg:py-24 bg-black/20">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12 sm:mb-16">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-white fade-in-up">Sosyal Medya Gücümüz</h2>
+                    <p class="text-base sm:text-lg text-gray-400 max-w-3xl mx-auto fade-in-up" style="transition-delay: 150ms;">Kanıtlanmış topluluk gücümüzle markanız için değer yaratıyoruz.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-12 max-w-6xl mx-auto">
+                    <a href="https://www.instagram.com/bugrafcyt/" target="_blank" data-link="https://www.instagram.com/bugrafcyt/" class="interactive-card-container block fade-in-up" style="transition-delay: 300ms;">
+                        <div class="interactive-card flex flex-col justify-center items-center p-4 lg:p-6 text-center">
+                            <div class="card-glare"><div class="glare-element"></div></div>
+                            <div class="card-content"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram Logo" class="h-16 md:h-20 lg:h-24 mx-auto mb-4"><div class="text-5xl md:text-6xl lg:text-7xl font-black text-white counter" data-target="12000">0</div><p class="text-lg lg:text-xl text-gray-300 mt-2">Takipçi</p></div>
+                        </div>
+                    </a>
+                    <a href="https://www.tiktok.com/@bugrafc26__" target="_blank" data-link="https://www.tiktok.com/@bugrafc26__" class="interactive-card-container block fade-in-up" style="transition-delay: 450ms;">
+                        <div class="interactive-card flex flex-col justify-center items-center p-4 lg:p-6 text-center">
+                            <div class="card-glare"><div class="glare-element"></div></div>
+                            <div class="card-content">
+                                <img src="https://upload.wikimedia.org/wikipedia/en/a/a9/TikTok_logo.svg" alt="TikTok Logo" class="h-16 md:h-20 lg:h-24 mx-auto mb-4">
+                                <div class="text-5xl md:text-6xl lg:text-7xl font-black text-white counter" data-target="3000">0</div>
+                                <p class="text-lg lg:text-xl text-gray-300 mt-2">Takipçi</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="https://www.youtube.com/@BUGRAFC" target="_blank" data-link="https://www.youtube.com/@BUGRAFC" class="interactive-card-container block fade-in-up" style="transition-delay: 600ms;">
+                        <div class="interactive-card flex flex-col justify-center items-center p-4 lg:p-6 text-center">
+                            <div class="card-glare"><div class="glare-element"></div></div>
+                            <div class="card-content"><img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube Logo" class="h-16 md:h-20 lg:h-24 mx-auto mb-4"><div class="text-5xl md:text-6xl lg:text-7xl font-black text-white counter" data-target="5000">0</div><p class="text-lg lg:text-xl text-gray-300 mt-2">Abone</p></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 sm:py-20 lg:py-24">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12 sm:mb-16"><h2 class="text-3xl sm:text-4xl font-bold text-white fade-in-up">Öne Çıkan Yazılım Projeleri</h2><p class="text-base sm:text-lg text-gray-400 mt-4 max-w-3xl mx-auto fade-in-up" style="transition-delay: 150ms;">Fikirleri koda, kodları başarıya dönüştürdüğümüz projelerden bir seçki.</p></div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                    <a href="Yazilim.html" class="group relative block overflow-hidden rounded-2xl fade-in-up" style="transition-delay: 200ms;"><img src="https://placehold.co/600x400/0f0c29/e0e0e0?text=Proje+1" alt="Proje 1" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div><div class="absolute bottom-0 left-0 p-6"><h3 class="text-xl font-bold text-white">Firmalara özel web site</h3><p class="text-sky-400 text-sm">Web sitesi</p></div></a>
+                    <a href="Yazilim.html" class="group relative block overflow-hidden rounded-2xl fade-in-up" style="transition-delay: 300ms;"><img src="https://placehold.co/600x400/302b63/e0e0e0?text=Proje+2" alt="Proje 2" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div><div class="absolute bottom-0 left-0 p-6"><h3 class="text-xl font-bold text-white">Randevu Yönetim Platformu</h3><p class="text-sky-400 text-sm">Web Uygulaması</p></div></a>
+                    <a href="Yazilim.html" class="group relative block overflow-hidden rounded-2xl fade-in-up" style="transition-delay: 400ms;"><img src="https://placehold.co/600x400/24243e/e0e0e0?text=Proje+3" alt="Proje 3" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div><div class="absolute bottom-0 left-0 p-6"><h3 class="text-xl font-bold text-white">E-Ticaret Mobil Uygulaması</h3><p class="text-sky-400 text-sm">Mobil Geliştirme</p></div></a>
+                </div>
+                 <div class="text-center mt-12 fade-in-up" style="transition-delay: 500ms;"><a href="Yazilim.html" class="shine-button inline-block px-8 py-3 bg-gray-700/50 text-white font-bold rounded-full transition-all duration-300 hover:bg-gray-600/70 hover:scale-105 border border-sky-500">Tüm Projeleri Gör</a></div>
+            </div>
+        </section>
+
+        <section class="py-16 sm:py-20 lg:py-24 bg-black/20">
+            <div class="container mx-auto px-4">
+                <div class="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+                    <div class="fade-in-up"><img src="https://placehold.co/600x700/1f379b/ffffff?text=Buğra" alt="Buğra" class="rounded-2xl shadow-2xl shadow-sky-700/20 w-full object-cover"></div>
+                    <div class="fade-in-up" style="transition-delay: 200ms;">
+                        <h2 class="text-3xl sm:text-4xl font-bold text-white mb-6">Benim Hikayem</h2>
+                        <div class="space-y-4 text-lg text-gray-300">
+                            <p>Ben Buğra. 13 yaşımda YouTube serüvenime adım attım. Kısa bir ara verdikten sonra daha güçlü bir şekilde geri döndüm ve BugraFCYT Instagram hesabını kurdum. Burada içeriklerimiz kısa sürede büyük bir ilgi gördü ve aylık en az 1 milyon izlenmeye ulaştık. Ardından, BugraFCHaber sayfasını hayata geçirdim ve burada yakaladığımız ivmeyle birlikte aylık 2 milyona yakın izlenme elde ettik.</p>
+                            <p>Sadece içerik üretmekle kalmadım, aynı zamanda farklı alanlarda da kendimi geliştirdim. 13 yaşımdan itibaren grafik tasarımla ilgilenmeye başladım, yıllar içerisinde birçok firma ve şirketin logo, sosyal medya postu ve video içeriklerini hazırladım. 15 yaşımdan bu yana yazılım alanında çalışıyor ve projeler geliştiriyorum. Bu süreçte yine birçok firmanın profesyonel web sitelerini tasarlayıp hayata geçirdim.</p>
+                            <p>Bugün bu web sitesini açma amacım; geliştirdiğim yazılım projelerini sergilemek, aynı zamanda çalışmalarımı bir portföy olarak paylaşmak. Her adımda daha ileriye gitmeyi hedefleyen, üretmeyi ve geliştirmeyi seven biri olarak, hedefim her zaman insanların hayatına değer katacak projeler üretmek.</p>
+                        </div>
+                        <a href="Hakkimizda.html" class="shine-button inline-block mt-8 px-8 py-3 bg-sky-500 text-white font-bold rounded-full transition-all duration-300 hover:bg-sky-600 hover:scale-105">Daha Fazlasını Öğren</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="py-16 sm:py-20">
+            <div class="container mx-auto px-4 text-center">
+                <div class="bg-gray-900/50 p-8 sm:p-12 rounded-2xl max-w-4xl mx-auto border border-sky-500/30 fade-in-up">
+                     <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Projenizi Hayata Geçirmeye Hazır Mısınız?</h2>
+                     <p class="text-base sm:text-lg text-gray-300 mb-8">Fikrinizi bizimle paylaşın, size özel dijital çözümlerle markanızı nasıl bir üst seviyeye taşıyabileceğimizi konuşalım.</p>
+                     <a href="Iletisim.html" class="shine-button inline-block px-8 py-3 sm:px-10 sm:py-4 bg-sky-500 text-white font-bold rounded-full transition-all duration-300 hover:bg-sky-600 hover:scale-105 shadow-lg shadow-sky-500/30">PROJENİZİ HAYATA GEÇİRMEK İÇN BİZİMLE İLETİŞİME GEÇİN</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-8 bg-black/50"><div class="container mx-auto px-4 text-center text-gray-500"><p>© 2025 BUGRA FC. Tüm Hakları Saklıdır.</p></div></footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            const menuBtn = document.getElementById('menu-btn'), mobileMenu = document.getElementById('mobile-menu'), menuIcon = document.getElementById('menu-icon');
+            menuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); menuIcon.setAttribute('data-lucide', mobileMenu.classList.contains('hidden') ? 'menu' : 'x'); lucide.createIcons(); });
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        if (entry.target.classList.contains('fade-in-up')) { entry.target.classList.add('is-visible'); }
+                        if (entry.target.classList.contains('counter')) { animateCounter(entry.target); }
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.fade-in-up, .counter').forEach(el => { observer.observe(el); });
+
+            function animateCounter(element) {
+                const target = parseInt(element.getAttribute('data-target'));
+                const duration = 2500; 
+                let startTimestamp = null;
+                const easeOutQuad = t => t * (2 - t); 
+                const step = (timestamp) => {
+                    if (!startTimestamp) startTimestamp = timestamp;
+                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                    const easedProgress = easeOutQuad(progress);
+                    const current = Math.floor(easedProgress * target);
+                    element.innerText = current.toLocaleString('tr-TR');
+                    if (progress < 1) { requestAnimationFrame(step); } else { element.innerText = target.toLocaleString('tr-TR') + '+'; }
+                };
+                requestAnimationFrame(step);
+            }
+            
+            const cards = document.querySelectorAll('.interactive-card');
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    if (window.innerWidth < 1024) return;
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const { width, height } = rect;
+                    const rotateX = (y - height / 2) / (height / 2) * -8;
+                    const rotateY = (x - width / 2) / (width / 2) * 8;
+                    card.style.setProperty('--rotateX', `${rotateX}deg`);
+                    card.style.setProperty('--rotateY', `${rotateY}deg`);
+                    const glare = card.querySelector('.glare-element');
+                    const glareX = (x / width * 100) + '%';
+                    const glareY = (y / height * 100) + '%';
+                    glare.style.setProperty('--glareX', glareX);
+                    glare.style.setProperty('--glareY', glareY);
+                });
+                card.addEventListener('mouseleave', () => {
+                    if (window.innerWidth < 1024) return;
+                    card.style.setProperty('--rotateX', '0deg');
+                    card.style.setProperty('--rotateY', '0deg');
+                });
+            });
+
+            document.querySelectorAll('a[data-link]').forEach(linkElement => {
+                linkElement.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const url = linkElement.getAttribute('data-link');
+                    if (url) { window.open(url, '_blank'); }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sosyal Medya Yönetimi ve Mizah Haber Servisi - BUGRA FC</title>
+    
+    <meta name="description" content="BUGRA FC ile sosyal medyada markanızı zirveye taşıyın. Strateji geliştirme, içerik üretimi, reklam yönetimi ve özel mizah haber servisimizle tanışın.">
+    <meta name="keywords" content="sosyal medya yönetimi, mizah haber, instagram, tiktok, youtube, topluluk yönetimi, Buğra FC">
+    <meta name="author" content="BUGRA FC">
+    <meta name="theme-color" content="#0f0c29">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+    <style>
+        body { font-family: 'Poppins', sans-serif; background-color: #0a0a0a; color: #e5e7eb; }
+        .animated-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: linear-gradient(45deg, #0f0c29, #302b63, #24243e, #1f379b); background-size: 400% 400%; animation: gradient-animation 20s ease infinite; }
+        @keyframes gradient-animation { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        ::-webkit-scrollbar { width: 8px; } ::-webkit-scrollbar-track { background: #111827; } ::-webkit-scrollbar-thumb { background: #0ea5e9; border-radius: 10px; }
+        .fade-in-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .is-visible { opacity: 1; transform: translateY(0); }
+        .glass-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); transition: transform 0.3s ease, background 0.3s ease; }
+        .glass-card:hover { background: rgba(255, 255, 255, 0.1); transform: translateY(-5px) scale(1.02); }
+        .shine-button { position: relative; overflow: hidden; }
+        .shine-button::before { content: ''; position: absolute; top: 0; left: -100%; width: 75%; height: 100%; background: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%); transform: skewX(-25deg); transition: left 0.7s ease-in-out; }
+        .shine-button:hover::before { left: 150%; }
+        .form-input { background: rgba(15, 23, 42, 0.5); border: 1px solid rgba(51, 65, 85, 0.7); transition: border-color 0.3s, box-shadow 0.3s; }
+        .form-input:focus { outline: none; border-color: #0ea5e9; box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.5); }
+        .sending .spinner { display: inline-block; }
+        .spinner { display: none; width: 20px; height: 20px; border: 2px solid #fff; border-top-color: transparent; border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+    <div class="animated-bg"></div>
+    
+    <header class="fixed top-0 left-0 w-full bg-black/30 backdrop-blur-sm z-40 shadow-lg shadow-sky-900/10">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="index2.html" class="text-3xl font-black text-white tracking-wider hover:text-sky-400">BUGRA FC</a>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="index2.html" class="text-gray-200 hover:text-sky-400 font-semibold">Anasayfa</a>
+                    <a href="Hakkimizda.html" class="text-gray-200 hover:text-sky-400 font-semibold">Hakkımızda</a>
+                    <a href="Yazilim.html" class="text-gray-200 hover:text-sky-400 font-semibold">Yazılım</a>
+                    <a href="GrafikTasarim.html" class="text-gray-200 hover:text-sky-400 font-semibold">Grafik Tasarım</a>
+                    <a href="SosyalMedya.html" class="text-sky-400 font-bold">Sosyal Medya</a>
+                    <a href="Iletisim.html" class="text-gray-200 hover:text-sky-400 font-semibold">İletişim</a>
+                </nav>
+                <div class="md:hidden"><button id="menu-btn" class="text-white"><i id="menu-icon" data-lucide="menu" class="w-8 h-8"></i></button></div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-black/50">
+            <a href="index2.html" class="block py-3 px-6 text-white text-center hover:bg-sky-500/20">Anasayfa</a>
+            <a href="hakkımda.html" class="block py-3 px-6 text-white text-center hover:bg-sky-500/20">Hakkımızda</a>
+            <a href="Yazilim.html" class="block py-3 px-6 text-white text-center hover:bg-sky-500/20">Yazılım</a>
+            <a href="GrafikTasarim.html" class="block py-3 px-6 text-white text-center hover:bg-sky-500/20">Grafik Tasarım</a>
+            <a href="SosyalMedya.html" class="block py-3 px-6 text-sky-400 font-bold text-center bg-sky-500/10">Sosyal Medya</a>
+            <a href="iletişim.html" class="block py-3 px-6 text-white text-center hover:bg-sky-500/20">İletişim</a>
+        </div>
+    </header>
+
+    <main class="pt-20">
+        <section id="sosyalmedya-hero" class="py-16 sm:py-20 lg:py-24 bg-black/20">
+            <div class="container mx-auto px-4 text-center">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-4 fade-in-up">Markanızın Dijital Sahnesini Biz Kuruyoruz</h1>
+                <p class="text-gray-300 text-lg md:text-xl mb-12 max-w-3xl mx-auto fade-in-up" style="transition-delay: 200ms;">Sadece paylaşım yapmıyoruz; strateji oluşturuyor, topluluklar inşa ediyor ve markanız için ölçülebilir sonuçlar üretiyoruz.</p>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-gradient-to-br from-purple-600 via-pink-500 to-red-500 p-8 rounded-xl text-white transform transition-transform duration-300 hover:scale-105 fade-in-up"><i data-lucide="instagram" class="w-16 h-16 mx-auto mb-4 opacity-80"></i><div class="text-5xl font-black counter" data-target="12000">0</div><div class="text-xl font-semibold mt-2">Instagram Takipçi</div></div>
+                    <div class="bg-gradient-to-br from-cyan-400 to-blue-500 p-8 rounded-xl text-white transform transition-transform duration-300 hover:scale-105 fade-in-up" style="transition-delay: 150ms;"><i data-lucide="music-4" class="w-16 h-16 mx-auto mb-4 opacity-80"></i><div class="text-5xl font-black counter" data-target="3000">0</div><div class="text-xl font-semibold mt-2">TikTok Takipçi</div></div>
+                    <div class="bg-gradient-to-br from-red-600 to-red-800 p-8 rounded-xl text-white transform transition-transform duration-300 hover:scale-105 fade-in-up" style="transition-delay: 300ms;"><i data-lucide="youtube" class="w-16 h-16 mx-auto mb-4 opacity-80"></i><div class="text-5xl font-black counter" data-target="5000">0</div><div class="text-xl font-semibold mt-2">YouTube Abone</div></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="hizmetler" class="py-16 sm:py-20 lg:py-24">
+            <div class="container mx-auto px-4">
+                <div class="text-center"><h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white fade-in-up">Sunduğumuz Sosyal Medya Hizmetleri</h2><p class="text-gray-400 mb-12 max-w-2xl mx-auto fade-in-up" style="transition-delay: 200ms;">Markanızın dijitaldeki sesini güçlendirmek için kapsamlı çözümler üretiyoruz.</p></div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    <div class="glass-card p-8 rounded-xl fade-in-up"><i data-lucide="goal" class="w-12 h-12 text-sky-400 mb-4"></i><h3 class="text-2xl font-bold text-white mb-3">Strateji Geliştirme</h3><p class="text-gray-400">Hedef kitlenizi analiz ediyor, rakip araştırması yapıyor ve markanız için en doğru yol haritasını çiziyoruz.</p></div>
+                    <div class="glass-card p-8 rounded-xl fade-in-up" style="transition-delay: 150ms;"><i data-lucide="camera" class="w-12 h-12 text-sky-400 mb-4"></i><h3 class="text-2xl font-bold text-white mb-3">Yaratıcı İçerik Üretimi</h3><p class="text-gray-400">Dikkat çekici görseller, viral potansiyeli taşıyan videolar ve etkileşim odaklı metinlerle takipçilerinizi bağlıyoruz.</p></div>
+                    <div class="glass-card p-8 rounded-xl fade-in-up" style="transition-delay: 300ms;"><i data-lucide="megaphone" class="w-12 h-12 text-sky-400 mb-4"></i><h3 class="text-2xl font-bold text-white mb-3">Reklam Yönetimi</h3><p class="text-gray-400">Bütçenizi en verimli şekilde kullanarak, hedefli reklam kampanyalarıyla doğru kitleye ulaşıp dönüşümleri artırıyoruz.</p></div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="py-16 sm:py-20 lg:py-24 bg-black/20">
+            <div class="container mx-auto px-4">
+                <div class="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+                    <div class="fade-in-up">
+                        <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Kendi Mizah Haberini Yaptır!</h2>
+                        <p class="text-gray-400 mb-8 text-lg">Aklındaki eğlenceli haber başlığını bizimle paylaş, profesyonel tasarım ekibimiz hazırlayıp sana göndersin. Arkadaşlarına şaka yapmak veya fenomen olmak hiç bu kadar kolay olmamıştı!</p>
+                        
+                        <div class="glass-card p-8 rounded-2xl">
+                            <form id="news-generator-form" class="space-y-6">
+                                <div>
+                                    <label for="headline-input" class="block text-sm font-medium text-gray-300 mb-2 text-left">Haber Başlığı</label>
+                                    <input type="text" id="headline-input" name="message" required class="form-input w-full px-4 py-3 rounded-lg text-white" placeholder="Örn: 'Arkadaşım Bugün de Çok Karizmatikti'">
+                                </div>
+                                <div>
+                                    <label for="instagram-username" class="block text-sm font-medium text-gray-300 mb-2 text-left">Instagram Kullanıcı Adı (İsteğe Bağlı)</label>
+                                    <input type="text" id="instagram-username" name="from_name" class="form-input w-full px-4 py-3 rounded-lg text-white" placeholder="Örn: bugrafcyt">
+                                </div>
+                                <div>
+                                    <label for="email_contact" class="block text-sm font-medium text-gray-300 mb-2 text-left">E-posta Adresiniz</label>
+                                    <input type="email" id="email_contact" name="from_email" required class="form-input w-full px-4 py-3 rounded-lg text-white" placeholder="Hazırlanan görselin gönderileceği adres">
+                                </div>
+                                <input type="hidden" name="service_type" value="Mizah Haberi Talebi">
+                                <div>
+                                    <button type="submit" id="submit-news-button" class="shine-button w-full px-6 py-4 bg-sky-600 text-white font-bold rounded-lg transition-all duration-300 hover:bg-sky-700 hover:scale-105 flex justify-center items-center">
+                                        <span class="button-text flex items-center justify-center gap-2"><i data-lucide="sparkles" class="w-5 h-5"></i> Başlığı Gönder!</span>
+                                        <span class="spinner"></span>
+                                    </button>
+                                </div>
+                            </form>
+                            <div id="news-success-message" class="hidden text-center p-6 mt-6 bg-green-500/20 border border-green-500 rounded-lg"><i data-lucide="check-circle" class="w-12 h-12 text-green-400 mx-auto mb-4"></i><h3 class="text-xl font-bold text-white">Talebin Alındı!</h3><p class="text-green-300 mt-2">Haber fikrin için teşekkürler! En kısa sürede hazırlayıp e-postana göndereceğiz.</p></div>
+                            <div id="news-error-message" class="hidden text-center p-6 mt-6 bg-red-500/20 border border-red-500 rounded-lg"><i data-lucide="x-circle" class="w-12 h-12 text-red-400 mx-auto mb-4"></i><h3 class="text-xl font-bold text-white">Bir Hata Oluştu!</h3><p class="text-red-300 mt-2">Gönderim başarısız. Lütfen daha sonra tekrar dene.</p></div>
+                        </div>
+                    </div>
+                    
+                    <div class="fade-in-up lg:order-last order-first" style="transition-delay: 200ms;">
+                        <img src="https://placehold.co/600x400/1f379b/ffffff?text=Mizah+Haberi+Örneği" alt="Mizah Haberi Örneği" class="rounded-2xl shadow-2xl shadow-sky-700/20 w-full object-cover">
+                        <p class="text-gray-500 text-sm text-center mt-4">Hayal gücünüzle sınırlı mizah haberleri için harika bir örnek!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-8 bg-black/50"><div class="container mx-auto px-4 text-center text-gray-500"><p>© 2025 BUGRA FC. Tüm Hakları Saklıdır.</p></div></footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            const menuBtn = document.getElementById('menu-btn'), mobileMenu = document.getElementById('mobile-menu'), menuIcon = document.getElementById('menu-icon');
+            menuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); menuIcon.setAttribute('data-lucide', mobileMenu.classList.contains('hidden') ? 'menu' : 'x'); lucide.createIcons(); });
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        if (entry.target.classList.contains('fade-in-up')) { entry.target.classList.add('is-visible'); }
+                        if (entry.target.classList.contains('counter')) { animateCounter(entry.target); }
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+            document.querySelectorAll('.fade-in-up, .counter').forEach(el => { observer.observe(el); });
+
+            function animateCounter(element) {
+                const target = parseInt(element.getAttribute('data-target'));
+                const duration = 2000;
+                let startTime = null;
+                const easeOutQuad = t => t * (2 - t);
+                function animationStep(timestamp) {
+                    if (!startTime) startTime = timestamp;
+                    const progress = timestamp - startTime;
+                    const current = Math.min(Math.floor((progress / duration) * target), target);
+                    element.innerText = current.toLocaleString('tr-TR');
+                    if (progress < duration) { requestAnimationFrame(animationStep); } else { element.innerText = target.toLocaleString('tr-TR') + '+'; }
+                }
+                requestAnimationFrame(animationStep);
+            }
+
+            // Haber Jeneratörü için EmailJS Form Yönetimi
+            const newsForm = document.getElementById('news-generator-form');
+            if (newsForm) {
+                const successMsg = document.getElementById('news-success-message');
+                const errorMsg = document.getElementById('news-error-message');
+                const submitBtn = document.getElementById('submit-news-button');
+
+                // İletişim formundakiyle aynı bilgileri kullanıyoruz
+                const publicKey = "R65OiAFnDldfdiV_D";
+                const serviceID = "service_94xk56i";
+                const templateID = "template_i8wmdhr"; 
+
+                emailjs.init({ publicKey: publicKey });
+
+                newsForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    submitBtn.classList.add('sending');
+                    submitBtn.disabled = true;
+
+                    // sendForm metodu, formdaki name özelliklerine göre otomatik veri toplar
+                    emailjs.sendForm(serviceID, templateID, newsForm)
+                        .then(() => {
+                            newsForm.style.display = 'none';
+                            successMsg.classList.remove('hidden');
+                            lucide.createIcons();
+                        }, (err) => {
+                            newsForm.style.display = 'none';
+                            errorMsg.classList.remove('hidden');
+                            lucide.createIcons();
+                        });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

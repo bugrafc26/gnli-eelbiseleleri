@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BYGRA FC - Grafik Tasarım</title>
+    
+    <meta name="description" content="BUGRA FC'nin dinamik ve tam mobil uyumlu grafik tasarım portföyü. Sürekli akan galeri ile logo, kurumsal kimlik ve dijital sanat çalışmalarımızı keşfedin.">
+    <meta name="keywords" content="mobil uyumlu portföy, animasyonlu galeri, grafik tasarım, logo, Buğra FC">
+    <meta name="author" content="BUGRA FC">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* --- TEMEL STİLLER --- */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0a0a0a;
+            color: #e5e7eb;
+        }
+
+        .animated-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+            background: linear-gradient(45deg, #0f0c29, #302b63, #24243e, #1f379b);
+            background-size: 400% 400%;
+            animation: gradient-animation 20s ease infinite;
+        }
+
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #111827; }
+        ::-webkit-scrollbar-thumb { background: #0ea5e9; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #0284c7; }
+
+        /* --- DİKEY KAYAN GALERİ ANİMASYONU --- */
+        .scrolling-column {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem; /* MOBİL GÜNCELLEMESİ: Boşluk ayarlandı */
+            --animation-duration: 40s;
+        }
+
+        @media (min-width: 640px) {
+            .scrolling-column {
+                gap: 1rem; /* Geniş ekranlar için boşluk */
+            }
+        }
+        
+        .scrolling-column .image-group {
+            display: flex;
+            flex-direction: column;
+            gap: inherit; /* Üst elementin boşluğunu miras al */
+            animation: scroll-up var(--animation-duration) linear infinite;
+        }
+
+        .scrolling-column:hover .image-group {
+            animation-play-state: paused;
+        }
+        
+        .scrolling-column .image-group.duplicated {
+             display: flex; 
+        }
+
+        .scrolling-column img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1 / 1.25;
+            object-fit: cover;
+            border-radius: 0.75rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .scrolling-column img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(14, 165, 233, 0.5);
+        }
+        
+        @keyframes scroll-up {
+            from { transform: translateY(0); }
+            to { transform: translateY(-100%); }
+        }
+
+        /* Fade-in animasyonu */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+    <div class="animated-bg"></div>
+    
+    <header class="fixed top-0 left-0 w-full bg-black/30 backdrop-blur-sm z-40 transition-all duration-300 shadow-lg shadow-sky-900/10">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="index2.html" class="text-3xl font-black text-white tracking-wider hover:text-sky-400 transition-all duration-300">BUGRA FC</a>
+                
+                <nav class="hidden md:flex space-x-8">
+                    <a href="hakkımda.html" class="text-gray-200 hover:text-sky-400 transition-colors duration-300 font-semibold">Hakkımızda</a>
+                    <a href="Yazilim.html" class="text-gray-200 hover:text-sky-400 transition-colors duration-300 font-semibold">Yazılım</a>
+                    <a href="GrafikTasarim.html" class="text-sky-400 font-bold">Grafik Tasarım</a>
+                    <a href="SosyalMedya.html" class="text-gray-200 hover:text-sky-400 transition-colors duration-300 font-semibold">Sosyal Medya</a>
+                    <a href="iletişim.html" class="text-gray-200 hover:text-sky-400 transition-colors duration-300 font-semibold">İletişim</a>
+                </nav>
+                
+                <div class="md:hidden">
+                    <button id="menu-btn" class="text-white">
+                        <i id="menu-icon" data-lucide="menu" class="w-8 h-8"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="mobile-menu" class="hidden md:hidden bg-black/50">
+            <a href="hakkımda.html" class="block py-3 px-6 text-white text-center hover:bg-sky-500/20">Hakkımızda</a>
+            <a href="Yazilim.html" class="block py-3 px-6 text-white text-center hover:bg-sky-500/20">Yazılım</a>
+            <a href="GrafikTasarim.html" class="block py-3 px-6 text-sky-400 font-bold text-center bg-sky-500/10">Grafik Tasarım</a>
+            <a href="SosyalMedya.html" class="block py-3 px-6 text-white text-center hover:bg-sky-500/20">Sosyal Medya</a>
+            <a href="iletişim.html" class="block py-3 px-6 text-white text-center hover:bg-sky-500/20">İletişim</a>
+        </div>
+    </header>
+
+    <main class="pt-20">
+        <section id="grafik-gallery" class="py-16 sm:py-20 lg:py-24">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-white fade-in-up">Yaratıcılığın Aktığı Yer</h2>
+                <p class="text-gray-400 mb-12 max-w-2xl mx-auto text-base md:text-lg fade-in-up" style="transition-delay: 200ms;">Dinamik galerimizde tasarımlarımızın canlılığını hissedin.</p>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 overflow-hidden h-[75vh] min-h-[500px] max-h-[900px] [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)]">
+                    <div class="scrolling-column" style="--animation-duration: 35s;">
+                        <div class="image-group">
+                            <img src="1.jpg" alt="Tasarım 1">
+                            <img src="2.jpg" alt="Tasarım 2">
+                            <img src="3.jpg" alt="Tasarım 3">
+                            <img src="4.jpg" alt="Tasarım 4">
+                        </div>
+                        <div class="image-group duplicated" aria-hidden="true">
+                            <img src="6.jpg" alt="Tasarım 1">
+                            <img src="7.jpg" alt="Tasarım 2">
+                            <img src="8.jpg" alt="Tasarım 3">
+                            <img src="9.jpg" alt="Tasarım 4">
+                        </div>
+                    </div>
+                    <div class="scrolling-column" style="--animation-duration: 45s; animation-direction: reverse;">
+                         <div class="image-group">
+                            <img src="10.jpg" alt="Tasarım 5">
+                            <img src="6.jpg" alt="Tasarım 6">
+                            <img src="7.jpg" alt="Tasarım 7">
+                            <img src="8.jpg" alt="Tasarım 8">
+                        </div>
+                        <div class="image-group duplicated" aria-hidden="true">
+                            <img src="5.jpg" alt="Tasarım 5">
+                            <img src="6.jpg" alt="Tasarım 6">
+                            <img src="7.jpg" alt="Tasarım 7">
+                            <img src="8.jpg" alt="Tasarım 8">
+                        </div>
+                    </div>
+                    <div class="hidden md:flex scrolling-column" style="--animation-duration: 30s;">
+                         <div class="image-group">
+                            <img src="9.jpg" alt="Tasarım 9">
+                            <img src="10.jpg" alt="Tasarım 10">
+                            <img src="11.jpg" alt="Tasarım 11">
+                            <img src="12.jpg" alt="Tasarım 12">
+                        </div>
+                        <div class="image-group duplicated" aria-hidden="true">
+                            <img src="13.jpg" alt="Tasarım 9">
+                            <img src="14.jpg" alt="Tasarım 10">
+                            <img src="11.jpg" alt="Tasarım 11">
+                            <img src="12.jpg" alt="Tasarım 12">
+                        </div>
+                    </div>
+                    <div class="hidden lg:flex scrolling-column" style="--animation-duration: 50s; animation-direction: reverse;">
+                         <div class="image-group">
+                            <img src="13.jpg" alt="Tasarım 13">
+                            <img src="14.jpg" alt="Tasarım 14">
+                            <img src="15.jpg" alt="Tasarım 15">
+                            <img src="16.jpg" alt="Tasarım 16">
+                        </div>
+                        <div class="image-group duplicated" aria-hidden="true">
+                             <img src="13" alt="Tasarım 13">
+                            <img src="14.jpg" alt="Tasarım 14">
+                            <img src="15.jpg" alt="Tasarım 15">
+                            <img src="16.jpg" alt="Tasarım 16">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="container mx-auto px-4 mt-16 sm:mt-24">
+                <h3 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-10 sm:mb-12 text-white text-center fade-in-up">Tasarım Hizmetlerimiz</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
+                    <div class="bg-gray-800/50 p-6 rounded-xl flex items-start gap-4 border border-transparent hover:border-sky-500 transition-all duration-300 hover:shadow-2xl hover:shadow-sky-500/20 fade-in-up" style="transition-delay: 100ms;">
+                        <i data-lucide="gem" class="w-8 h-8 sm:w-10 sm:h-10 text-sky-400 flex-shrink-0 mt-1"></i>
+                        <div>
+                            <h4 class="text-lg sm:text-xl font-bold text-white mb-2">Marka & Kurumsal Kimlik</h4>
+                            <p class="text-gray-400 text-sm sm:text-base">Markanızın ruhunu yansıtan logo, renk paleti ve görsel dil oluşturuyoruz.</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800/50 p-6 rounded-xl flex items-start gap-4 border border-transparent hover:border-sky-500 transition-all duration-300 hover:shadow-2xl hover:shadow-sky-500/20 fade-in-up" style="transition-delay: 200ms;">
+                        <i data-lucide="smartphone" class="w-8 h-8 sm:w-10 sm:h-10 text-sky-400 flex-shrink-0 mt-1"></i>
+                        <div>
+                            <h4 class="text-lg sm:text-xl font-bold text-white mb-2">UI/UX Tasarımı</h4>
+                            <p class="text-gray-400 text-sm sm:text-base">Kullanıcıların seveceği, estetik ve işlevsel dijital deneyimler tasarlıyoruz.</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800/50 p-6 rounded-xl flex items-start gap-4 border border-transparent hover:border-sky-500 transition-all duration-300 hover:shadow-2xl hover:shadow-sky-500/20 fade-in-up" style="transition-delay: 300ms;">
+                        <i data-lucide="megaphone" class="w-8 h-8 sm:w-10 sm:h-10 text-sky-400 flex-shrink-0 mt-1"></i>
+                        <div>
+                            <h4 class="text-lg sm:text-xl font-bold text-white mb-2">Pazarlama Materyalleri</h4>
+                            <p class="text-gray-400 text-sm sm:text-base">Hedef kitlenizi harekete geçiren sosyal medya görselleri ve reklamlar hazırlıyoruz.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 sm:py-20">
+            <div class="container mx-auto px-4 text-center">
+                <div class="bg-gradient-to-r from-sky-500/20 to-indigo-500/20 p-8 sm:p-12 rounded-2xl max-w-4xl mx-auto border border-sky-500/30">
+                     <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Bir Fikriniz mi Var?</h2>
+                     <p class="text-gray-300 text-lg mb-8">Hayalinizdeki projeyi birlikte gerçeğe dönüştürelim. Tasarım ihtiyaçlarınız için buradayız.</p>
+                     <a href="Iletisim.html" class="px-8 py-3 bg-sky-500 text-white font-bold rounded-full transition-all duration-300 hover:bg-sky-600 hover:scale-105 shadow-lg shadow-sky-500/30">
+                         İletişime Geçin
+                     </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-8 bg-black/50">
+        <div class="container mx-auto px-4 text-center text-gray-500">
+            <p>&copy; 2025 BUGRA FC. Tüm Hakları Saklıdır.</p>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = document.getElementById('menu-icon');
+            
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                menuIcon.setAttribute('data-lucide', mobileMenu.classList.contains('hidden') ? 'menu' : 'x');
+                lucide.createIcons();
+            });
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-in-up').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
